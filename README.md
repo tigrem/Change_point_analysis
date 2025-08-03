@@ -1,108 +1,79 @@
-# Fraud Detection Project: Model Training and Explainability
+    Project Title: Brent Oil Price Change Point Analysis
 
-## Project Overview
+    Project Description: A brief overview of the project's goal: analyzing Brent oil prices using Bayesian change point detection to identify and associate structural breaks with major geopolitical and economic events, providing actionable insights for energy sector stakeholders.
 
-This project focuses on building and evaluating robust fraud detection models using two distinct datasets:
-1.  **E-commerce Fraud Data (Fraud_Data.csv):** Simulates user behavior and transactions to identify fraudulent sign-ups or purchases.
-2.  **Credit Card Fraud Data (creditcard.csv):** Contains highly imbalanced transactional data to detect fraudulent credit card transactions.
+    Business Objective: Reiterate the main goal of studying how important events affect Brent oil prices and providing clear insights for investors, analysts, and policymakers.
 
-The primary goals of this project are:
-* **Data Preprocessing:** Handle data cleaning, feature engineering, and appropriate scaling/encoding for different data types.
-* **Model Training:** Train LightGBM classifiers, which are highly effective for tabular data, on both datasets.
-* **Model Evaluation:** Assess model performance using relevant metrics for imbalanced datasets (e.g., Precision, Recall, F1-Score, ROC-AUC).
-* **Model Explainability (SHAP):** Utilize SHAP (SHapley Additive exPlanations) to interpret model predictions, understand feature importance, and diagnose model behavior.
+    Situational Overview: Briefly explain the role of a data scientist at Birhan Energies and the business need for this analysis.
 
-## Project Structure
+    Data: Describe the brent_oil_prices.csv dataset (daily prices from May 20, 1987, to September 30, 2022, in USD per barrel) and the key_events.csv file.
 
-The project is organized into three main tasks, each addressing a critical phase of the machine learning pipeline:
+    Task Requirements (Roadmap):
 
-* **Task 1: Data Preprocessing and Feature Engineering**
-    * Loading and initial exploration of `Fraud_Data.csv` and `creditcard.csv`.
-    * Handling categorical and numerical features using `ColumnTransformer`.
-    * Addressing class imbalance with `SMOTENC` for `Fraud_Data` and `SMOTE` for `creditcard.csv`.
-    * Splitting data into training and testing sets.
+        Task 1: Laying the Foundation for Analysis (Current Submission):
 
-* **Task 2: Model Training and Evaluation**
-    * Training `LightGBM` (LGBMClassifier) models for both datasets.
-    * Evaluating model performance using:
-        * Classification Reports (Precision, Recall, F1-Score)
-        * Confusion Matrices
-        * ROC AUC Curves
+            Defining the Data Analysis Workflow.
 
-* **Task 3: Model Explainability with SHAP**
-    * Generating SHAP values using `shap.TreeExplainer` for both trained `LightGBM` models.
-    * Visualizing global feature importance using SHAP Summary Plots (beeswarm and bar plots).
-    * Interpreting individual predictions using SHAP Force Plots for fraudulent transactions.
+            Researching and Compiling Event Data.
 
-## Setup and Installation
+            Identifying Assumptions and Limitations (including correlation vs. causation).
 
-To run this project, you'll need Python and the following libraries. It's highly recommended to use a virtual environment.
+            Determining Communication Channels.
 
-1.  **Clone the repository (if applicable) or download the project files.**
-2.  **Create a virtual environment:**
-    ```bash
-    python -m venv fraud_env
-    ```
-3.  **Activate the virtual environment:**
-    * **Windows:** `.\fraud_env\Scripts\activate`
-    * **macOS/Linux:** `source fraud_env/bin/activate`
-4.  **Install the required packages:**
-    ```bash
-    pip install pandas numpy scikit-learn lightgbm imbalanced-learn shap matplotlib jupyter ipykernel
-    ```
-5.  **Install the virtual environment kernel into Jupyter:**
-    ```bash
-    python -m ipykernel install --user --name=fraud_env --display-name "Python (Fraud Detection Env)"
-    ```
-6.  **Download the datasets:**
-    * `Fraud_Data.csv`: (Specify source if publicly available, e.g., Kaggle link, or state it should be placed in a `data/` folder if included in the repo.)
-    * `creditcard.csv`: (Specify source if publicly available, e.g., Kaggle link, or state it should be placed in a `data/` folder if included in the repo.)
-    * **Place these CSV files in a `data/` directory within your project root.**
+            Analyzing Time Series Properties.
 
-## How to Run
+            Explaining Change Point Models.
 
-1.  **Launch Jupyter Notebook or Jupyter Lab:**
-    ```bash
-    jupyter notebook
-    # or jupyter lab
-    ```
-2.  **Open the main project notebook (e.g., `Fraud_Detection_Project.ipynb`).**
-3.  **Ensure you select the `Python (Fraud Detection Env)` kernel** from the "Kernel" menu -> "Change kernel".
-4.  **Run all cells sequentially.** The notebook is structured to guide you through each task from data loading to model explainability.
+            Describing Expected Outputs and Limitations.
 
-## Key Findings and Interpretations
+        Task 2: Model Development and Impact Quantification:
 
-### Model Performance
+            Building and implementing the Bayesian change point model (PyMC3).
 
-* **E-commerce Fraud Data:** The LightGBM model performs effectively on the e-commerce data, demonstrating strong capabilities in identifying fraudulent users/transactions after handling class imbalance. Metrics such as [mention specific metrics, e.g., high recall for fraud, good F1-score].
-* **Credit Card Fraud Data:** Despite the extreme imbalance, the LightGBM model achieved [mention specific metrics, e.g., excellent recall for the minority class, a high AUC score], highlighting its ability to detect rare fraudulent transactions.
+            Identifying probable change points.
 
-### SHAP Explanations
+            Quantifying the impact of events on price changes.
 
-SHAP analysis provided crucial insights into model decision-making:
+            Linking change points to researched events.
 
-* **Global Feature Importance:**
-    * For **E-commerce Fraud**, features like [mention 2-3 most important features based on SHAP plots, e.g., `device_id_count`, `ip_address_risk`, `purchase_to_signup_ratio`] were consistently identified as having the largest impact on fraud prediction. This suggests that behavioral patterns and device/IP anomalies are key indicators.
-    * For **Credit Card Fraud**, features such as [mention 2-3 most important V-features, e.g., `V17`, `V14`, `V10`] were paramount. This aligns with common knowledge that these principal components often capture suspicious transaction patterns.
+        Task 3: Interactive Dashboard Development:
 
-* **Individual Prediction Insights (Force Plots):**
-    * Force plots for specific fraudulent transactions clearly illustrate how a combination of these high-impact features pushed the prediction towards fraud. For example, a transaction with a [high 'Amount'] and unusual [V-feature value] would contribute significantly to a fraudulent score.
-    * This granular explainability is invaluable for fraud analysts to understand why a particular transaction was flagged and can help in refining fraud rules or investigations.
-## Dependencies
-* Python 3.13
-* pandas
-* numpy
-* scikit-learn
-* lightgbm
-* imbalanced-learn
-* shap
-* matplotlib
-* jupyter
-* ipykernel
-## Future Work
-* **Hyperparameter Tuning:** Implement more extensive hyperparameter tuning for LightGBM using GridSearchCV or RandomizedSearchCV.
-* **Ensemble Methods:** Explore other ensemble models like XGBoost or CatBoost for comparison.
-* **Deep Learning Models:** Investigate neural networks for fraud detection, especially for complex sequential data.
-* **Real-time Fraud Detection:** Consider how these models could be deployed in a real-time system.
-* **Adversarial Attacks & Robustness:** Explore the robustness of the models against sophisticated fraud attempts.
-* **Experiment Tracking:** Integrate tools like MLflow or Weights & Biases for better experiment tracking.
+            Developing a Flask backend and React frontend for an interactive dashboard.
+
+            Displaying and allowing exploration of insights.
+
+    Installation Guidelines: Instructions on how to set up the project environment, including dependencies (e.g., Python, PyMC3, Pandas, Flask, Node.js for React) and steps to install them.
+
+    Usage: How to run the notebooks, models, and the dashboard.
+
+    Project Organization: A brief explanation of the directory structure.
+
+    Metrics (for evaluation): Emphasize Project Organization and Reproducibility.
+
+    Contributing: Guidelines for contributions (optional for an interim submission but good practice).
+
+    License: (e.g., MIT License).
+
+Directory Contents:
+
+    data/: This directory will store all raw and processed data files.
+
+        brent_oil_prices.csv: The historical Brent oil price data.
+
+        key_events.csv: The structured dataset of major geopolitical and economic events.
+
+    notebooks/: This directory will contain Jupyter notebooks for exploratory data analysis (EDA), initial model prototyping, and visualization.
+
+        exploratory_analysis.ipynb: A notebook for initial data loading, cleaning, time series property analysis (trend, stationarity), and preliminary visualizations.
+
+    models/: This directory will house the Python scripts for the Bayesian change point models.
+
+        bayesian_changepoint.py: Python script(s) containing the implementation of the Bayesian change point model using PyMC3.
+
+    dashboard/: This directory will contain the code for the interactive dashboard.
+
+        backend/: Flask application code for serving data and model results to the frontend.
+
+        frontend/: React application code for the user interface and data visualization.
+    Reports/: This directory will contain the pdf report part of the project.
+    
