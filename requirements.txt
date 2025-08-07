@@ -4,12 +4,10 @@ numpy==1.23.5
 scipy==1.10.1
 matplotlib==3.7.1
 seaborn==0.12.2
-
 # Bayesian Modeling
 pymc3==3.11.5
 theano-pymc==1.1.2 # PyMC3 dependency
 arviz==0.15.1 # For MCMC diagnostics and plotting
-
 # Jupyter Notebooks
 jupyterlab==3.6.3
 
