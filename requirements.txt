@@ -10,4 +10,10 @@ theano-pymc==1.1.2 # PyMC3 dependency
 arviz==0.15.1 # For MCMC diagnostics and plotting
 # Jupyter Notebooks
 jupyterlab==3.6.3
+recharts
+lucide-react
+Flask
+Flask-Cors
+pandas
+
 
