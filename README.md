@@ -75,5 +75,5 @@ Directory Contents:
         backend/: Flask application code for serving data and model results to the frontend.
 
         frontend/: React application code for the user interface and data visualization.
-    Reports/: This directory will contain the pdf report part of the project.
+    Reports/: This directory will contain the pdf report part of the project for all.
     
